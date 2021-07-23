@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Cards/CardBase.cs" type="Script" id=1]
+[ext_resource path="res://Assets/tier1border.png" type="Texture" id=2]
+
+[node name="CardBase" type="MarginContainer"]
+margin_right = 250.0
+margin_bottom = 350.0
+rect_pivot_offset = Vector2( 125, 175 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Card" type="Sprite" parent="."]
+
+[node name="Border" type="Sprite" parent="."]
+position = Vector2( 0, -1.4126 )
+texture = ExtResource( 2 )
+centered = false
