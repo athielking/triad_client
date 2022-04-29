@@ -1,20 +1,146 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Cards/CardBase.cs" type="Script" id=1]
-[ext_resource path="res://Assets/tier1border.png" type="Texture" id=2]
+[ext_resource path="res://Cards/CardBase.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/TTNorms-Medium.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/images/109.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/CardBack.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 2 )
 
 [node name="CardBase" type="MarginContainer"]
-margin_right = 250.0
-margin_bottom = 350.0
-rect_pivot_offset = Vector2( 125, 175 )
+margin_right = 125.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 125, 175 )
+rect_pivot_offset = Vector2( 62.5, 87.5 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 174.632 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 125.351 ]
+}
+
+[node name="Card" type="Sprite" parent="."]
+scale = Vector2( 0.167081, 0.166317 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Card"]
+margin_left = 80.0
+margin_top = 81.0
+margin_right = 669.0
+margin_bottom = 630.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Card" type="Sprite" parent="."]
+[node name="PowerContainer" type="VBoxContainer" parent="Card/ColorRect"]
+margin_right = 593.0
+margin_bottom = 554.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Border" type="Sprite" parent="."]
-position = Vector2( 0, -1.4126 )
-texture = ExtResource( 2 )
+[node name="Top" type="HBoxContainer" parent="Card/ColorRect/PowerContainer"]
+margin_right = 593.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PowerTop" type="Label" parent="Card/ColorRect/PowerContainer/Top"]
+margin_top = 15.0
+margin_right = 593.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "9"
+align = 1
+
+[node name="Middle" type="HBoxContainer" parent="Card/ColorRect/PowerContainer"]
+margin_top = 186.0
+margin_right = 593.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PowerLeft" type="Label" parent="Card/ColorRect/PowerContainer/Middle"]
+margin_top = 15.0
+margin_right = 294.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "7"
+
+[node name="PowerRight" type="Label" parent="Card/ColorRect/PowerContainer/Middle"]
+margin_left = 298.0
+margin_top = 15.0
+margin_right = 593.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "5"
+align = 2
+
+[node name="Bottom" type="HBoxContainer" parent="Card/ColorRect/PowerContainer"]
+margin_top = 372.0
+margin_right = 593.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PowerBottom" type="Label" parent="Card/ColorRect/PowerContainer/Bottom"]
+margin_top = 15.0
+margin_right = 593.0
+margin_bottom = 167.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+align = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Card"]
+margin_left = 72.0
+margin_top = 682.0
+margin_right = 678.0
+margin_bottom = 765.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Card/ColorRect2"]
+margin_top = 1.0
+margin_right = 606.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Name"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Focus" type="TextureButton" parent="."]
+margin_right = 125.0
+margin_bottom = 175.0
+
+[node name="CardBack" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.167076, 0.166357 )
+texture = ExtResource( 4 )
 centered = false
+
+[node name="ZoomTween" type="Tween" parent="."]
+
+[node name="RotateTween" type="Tween" parent="."]
+
+[connection signal="mouse_entered" from="Focus" to="." method="_on_Focus_mouse_entered"]
+[connection signal="mouse_exited" from="Focus" to="." method="_on_Focus_mouse_exited"]

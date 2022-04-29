@@ -1,0 +1,391 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Lobby.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/loading.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.203922, 0.196078, 0.196078, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 480, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 960, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1440, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1920, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 2400, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 2880, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 3360, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 3840, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 4320, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 4800, 0, 480, 480 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 5280, 0, 480, 480 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "top",
+"speed": 12.0
+} ]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerListContainer" type="VBoxContainer" parent="MainContainer"]
+margin_right = 958.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/ServerListContainer"]
+margin_right = 958.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HeaderPanel" type="Panel" parent="MainContainer/ServerListContainer"]
+margin_top = 14.0
+margin_right = 958.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MainContainer/ServerListContainer/HeaderPanel"]
+margin_right = 958.0
+margin_bottom = 395.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainContainer/ServerListContainer/HeaderPanel/CenterContainer"]
+margin_left = 445.0
+margin_top = 190.0
+margin_right = 512.0
+margin_bottom = 204.0
+size_flags_horizontal = 3
+text = "Server List"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="MainContainer/ServerListContainer"]
+margin_top = 43.0
+margin_right = 958.0
+margin_bottom = 838.0
+size_flags_vertical = 3
+auto_height = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainContainer/ServerListContainer"]
+margin_top = 842.0
+margin_right = 958.0
+margin_bottom = 852.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="JoinPanel" type="Panel" parent="MainContainer/ServerListContainer"]
+margin_top = 856.0
+margin_right = 958.0
+margin_bottom = 1056.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="JoinGame" type="Button" parent="MainContainer/ServerListContainer/JoinPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.178
+margin_left = 25.4078
+margin_top = 21.5228
+margin_right = -24.5922
+margin_bottom = 22.5028
+disabled = true
+text = "Join Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="MainContainer/ServerListContainer"]
+margin_top = 1060.0
+margin_right = 958.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="RightContainer" type="VBoxContainer" parent="MainContainer"]
+margin_left = 962.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/RightContainer"]
+margin_right = 958.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="RightControls" type="HBoxContainer" parent="MainContainer/RightContainer"]
+margin_top = 14.0
+margin_right = 958.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/RightContainer/RightControls"]
+margin_right = 237.0
+margin_bottom = 1066.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="CenterContainer" type="VBoxContainer" parent="MainContainer/RightContainer/RightControls"]
+margin_left = 241.0
+margin_right = 716.0
+margin_bottom = 1066.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Controls" type="VBoxContainer" parent="MainContainer/RightContainer/RightControls/CenterContainer"]
+margin_right = 475.0
+margin_bottom = 1042.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HeaderPanel2" type="Panel" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls"]
+margin_right = 475.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/HeaderPanel2"]
+margin_top = -1.25854
+margin_right = 475.0
+margin_bottom = 23.7415
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/HeaderPanel2/CenterContainer"]
+margin_left = 214.0
+margin_top = 5.0
+margin_right = 260.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Players"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnlinePlayers" type="ItemList" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls"]
+margin_top = 29.0
+margin_right = 475.0
+margin_bottom = 809.0
+size_flags_vertical = 3
+
+[node name="HeaderPanel" type="Panel" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls"]
+margin_top = 813.0
+margin_right = 475.0
+margin_bottom = 838.0
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/HeaderPanel"]
+margin_right = 475.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/HeaderPanel/CenterContainer"]
+margin_left = 190.0
+margin_top = 5.0
+margin_right = 284.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Create a Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FormPanel" type="Panel" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls"]
+margin_top = 842.0
+margin_right = 475.0
+margin_bottom = 1042.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="UserLabel" type="Label" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/FormPanel"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 115.0
+margin_bottom = 39.0
+text = "Playing As: "
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UserName" type="Label" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/FormPanel"]
+margin_left = 125.0
+margin_top = 25.0
+margin_right = 425.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+text = "<username>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerLabel" type="Label" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/FormPanel"]
+anchor_top = -0.00280277
+anchor_bottom = -0.00280277
+margin_left = 25.0
+margin_top = 50.7063
+margin_right = 115.0
+margin_bottom = 64.7063
+text = "Server Name: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerName" type="TextEdit" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/FormPanel"]
+anchor_right = 0.084
+anchor_bottom = 0.159
+margin_left = 125.0
+margin_top = 45.0
+margin_right = 385.1
+margin_bottom = 29.932
+rect_min_size = Vector2( 0, 25 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateGame" type="Button" parent="MainContainer/RightContainer/RightControls/CenterContainer/Controls/FormPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.178
+margin_left = 18.0
+margin_top = 121.0
+margin_right = -32.0
+margin_bottom = 121.98
+text = "Create Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/RightContainer/RightControls/CenterContainer"]
+margin_top = 1046.0
+margin_right = 475.0
+margin_bottom = 1066.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainContainer/RightContainer/RightControls"]
+margin_left = 720.0
+margin_right = 958.0
+margin_bottom = 1066.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="LoadingDialog" type="WindowDialog" parent="."]
+margin_left = 448.0
+margin_top = 156.0
+margin_right = 1472.0
+margin_bottom = 924.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LoadingDialog"]
+margin_left = 431.413
+margin_top = 163.103
+margin_right = 588.413
+margin_bottom = 177.103
+text = "Waiting for other Players"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="LoadingDialog"]
+position = Vector2( 512, 384 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 14 )
+animation = "top"
+frame = 6
+playing = true
+flip_h = true
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_left = 830.739
+margin_top = 460.346
+margin_right = 1130.74
+margin_bottom = 565.346
+rect_min_size = Vector2( 300, 105 )
+popup_exclusive = true

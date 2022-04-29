@@ -1,0 +1,166 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Login.gd" type="Script" id=1]
+
+[node name="Login" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSeparator" type="HSplitContainer" parent="MainContainer"]
+margin_right = 458.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ControlContainer" type="VBoxContainer" parent="MainContainer"]
+margin_left = 462.0
+margin_right = 1458.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 996, 0 )
+
+[node name="VSeparator" type="MarginContainer" parent="MainContainer/ControlContainer"]
+margin_right = 996.0
+margin_bottom = 497.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LoginContainer" type="VBoxContainer" parent="MainContainer/ControlContainer"]
+margin_top = 501.0
+margin_right = 996.0
+margin_bottom = 579.0
+
+[node name="EmailContainer" type="HBoxContainer" parent="MainContainer/ControlContainer/LoginContainer"]
+margin_right = 996.0
+margin_bottom = 25.0
+
+[node name="VSeparator" type="MarginContainer" parent="MainContainer/ControlContainer/LoginContainer/EmailContainer"]
+margin_right = 329.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="ControlContainer" type="HBoxContainer" parent="MainContainer/ControlContainer/LoginContainer/EmailContainer"]
+margin_left = 333.0
+margin_right = 662.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="lbUsername" type="Label" parent="MainContainer/ControlContainer/LoginContainer/EmailContainer/ControlContainer"]
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Email:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tbUsername" type="LineEdit" parent="MainContainer/ControlContainer/LoginContainer/EmailContainer/ControlContainer"]
+margin_left = 129.0
+margin_right = 329.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+focus_next = NodePath("../../../PasswordContainer/ControlContainer/tbPassword")
+size_flags_horizontal = 3
+
+[node name="VSeparator2" type="MarginContainer" parent="MainContainer/ControlContainer/LoginContainer/EmailContainer"]
+margin_left = 666.0
+margin_right = 996.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="PasswordContainer" type="HBoxContainer" parent="MainContainer/ControlContainer/LoginContainer"]
+margin_top = 29.0
+margin_right = 996.0
+margin_bottom = 54.0
+
+[node name="VSeparator" type="MarginContainer" parent="MainContainer/ControlContainer/LoginContainer/PasswordContainer"]
+margin_right = 329.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="ControlContainer" type="HBoxContainer" parent="MainContainer/ControlContainer/LoginContainer/PasswordContainer"]
+margin_left = 333.0
+margin_right = 662.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="lbPassword" type="Label" parent="MainContainer/ControlContainer/LoginContainer/PasswordContainer/ControlContainer"]
+margin_top = 5.0
+margin_right = 125.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Password:"
+align = 2
+
+[node name="tbPassword" type="LineEdit" parent="MainContainer/ControlContainer/LoginContainer/PasswordContainer/ControlContainer"]
+margin_left = 129.0
+margin_right = 329.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+focus_next = NodePath("../../../ButtonContainer/btnLogin")
+focus_previous = NodePath("../../../EmailContainer/ControlContainer/tbUsername")
+size_flags_horizontal = 3
+secret = true
+
+[node name="VSeparator2" type="MarginContainer" parent="MainContainer/ControlContainer/LoginContainer/PasswordContainer"]
+margin_left = 666.0
+margin_right = 996.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MainContainer/ControlContainer/LoginContainer"]
+margin_top = 58.0
+margin_right = 996.0
+margin_bottom = 78.0
+
+[node name="VSeparator" type="MarginContainer" parent="MainContainer/ControlContainer/LoginContainer/ButtonContainer"]
+margin_right = 329.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="btnLogin" type="Button" parent="MainContainer/ControlContainer/LoginContainer/ButtonContainer"]
+margin_left = 333.0
+margin_right = 662.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Login"
+
+[node name="VSeparator2" type="MarginContainer" parent="MainContainer/ControlContainer/LoginContainer/ButtonContainer"]
+margin_left = 666.0
+margin_right = 996.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="VSeparator2" type="MarginContainer" parent="MainContainer/ControlContainer"]
+margin_top = 583.0
+margin_right = 996.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 10 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RightSeparator" type="HSplitContainer" parent="MainContainer"]
+margin_left = 1462.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="MainContainer/ControlContainer/LoginContainer/ButtonContainer/btnLogin" to="." method="_on_btnLogin_pressed"]

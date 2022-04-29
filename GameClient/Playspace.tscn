@@ -1,0 +1,329 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Playspace.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/cardslot.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/cardslot-blue.png" type="Texture" id=5]
+
+[node name="Playspace" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [ 959.52 ]
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.972549, 0.913725, 0.803922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 768.0
+margin_top = 273.0
+margin_right = 1152.0
+margin_bottom = 807.0
+rect_pivot_offset = Vector2( 192, 267 )
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot0" type="CenterContainer" parent="GridContainer"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton0" type="TextureButton" parent="GridContainer/CardSlot0"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot1" type="CenterContainer" parent="GridContainer"]
+margin_left = 129.0
+margin_right = 254.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton1" type="TextureButton" parent="GridContainer/CardSlot1"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot2" type="CenterContainer" parent="GridContainer"]
+margin_left = 258.0
+margin_right = 383.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton2" type="TextureButton" parent="GridContainer/CardSlot2"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot3" type="CenterContainer" parent="GridContainer"]
+margin_top = 179.0
+margin_right = 125.0
+margin_bottom = 354.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton3" type="TextureButton" parent="GridContainer/CardSlot3"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot4" type="CenterContainer" parent="GridContainer"]
+margin_left = 129.0
+margin_top = 179.0
+margin_right = 254.0
+margin_bottom = 354.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton4" type="TextureButton" parent="GridContainer/CardSlot4"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot5" type="CenterContainer" parent="GridContainer"]
+margin_left = 258.0
+margin_top = 179.0
+margin_right = 383.0
+margin_bottom = 354.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton5" type="TextureButton" parent="GridContainer/CardSlot5"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot6" type="CenterContainer" parent="GridContainer"]
+margin_top = 358.0
+margin_right = 125.0
+margin_bottom = 533.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton6" type="TextureButton" parent="GridContainer/CardSlot6"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot7" type="CenterContainer" parent="GridContainer"]
+margin_left = 129.0
+margin_top = 358.0
+margin_right = 254.0
+margin_bottom = 533.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton7" type="TextureButton" parent="GridContainer/CardSlot7"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardSlot8" type="CenterContainer" parent="GridContainer"]
+margin_left = 258.0
+margin_top = 358.0
+margin_right = 383.0
+margin_bottom = 533.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton8" type="TextureButton" parent="GridContainer/CardSlot8"]
+margin_right = 125.0
+margin_bottom = 175.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HandReference" type="ReferenceRect" parent="."]
+margin_top = 885.0
+margin_right = 1920.0
+margin_bottom = 1060.0
+size_flags_horizontal = 3
+border_color = Color( 0, 0.0392157, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hand" type="Node" parent="."]
+
+[node name="DeckReference" type="ReferenceRect" parent="."]
+margin_left = 1775.0
+margin_top = 690.0
+margin_right = 1900.0
+margin_bottom = 865.0
+size_flags_horizontal = 3
+border_color = Color( 0, 0.0392157, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Deck" type="TextureButton" parent="."]
+margin_left = 1406.44
+margin_top = 533.367
+margin_right = 1531.44
+margin_bottom = 708.367
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraveyardReference" type="ReferenceRect" parent="."]
+margin_left = 1775.0
+margin_top = 495.0
+margin_right = 1900.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+border_color = Color( 0, 0.0392157, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graveyard" type="Node" parent="."]
+
+[node name="OpponentHandReference" type="ReferenceRect" parent="."]
+margin_top = 20.0
+margin_right = 1920.0
+margin_bottom = 195.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentHand" type="Node" parent="."]
+
+[node name="OpponentDeckReference" type="ReferenceRect" parent="."]
+margin_left = 20.0
+margin_top = 215.0
+margin_right = 145.0
+margin_bottom = 390.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentDeck" type="TextureButton" parent="."]
+margin_left = 1406.44
+margin_top = 533.367
+margin_right = 1531.44
+margin_bottom = 708.367
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentGraveyardReference" type="ReferenceRect" parent="."]
+margin_left = 20.0
+margin_top = 410.0
+margin_right = 145.0
+margin_bottom = 585.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpponentGraveyard" type="Node" parent="."]
+
+[node name="TweenDraw" type="Tween" parent="."]
+
+[node name="TweenPlay" type="Tween" parent="."]
+
+[node name="TweenOpponentPlay" type="Tween" parent="."]
+
+[connection signal="pressed" from="GridContainer/CardSlot0/TextureButton0" to="." method="_on_TextureButton0_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot1/TextureButton1" to="." method="_on_TextureButton1_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot2/TextureButton2" to="." method="_on_TextureButton2_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot3/TextureButton3" to="." method="_on_TextureButton3_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot4/TextureButton4" to="." method="_on_TextureButton4_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot5/TextureButton5" to="." method="_on_TextureButton5_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot6/TextureButton6" to="." method="_on_TextureButton6_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot7/TextureButton7" to="." method="_on_TextureButton7_pressed"]
+[connection signal="pressed" from="GridContainer/CardSlot8/TextureButton8" to="." method="_on_TextureButton8_pressed"]
+[connection signal="pressed" from="Deck" to="." method="_on_Deck_pressed"]
