@@ -6,6 +6,7 @@ extends Node2D
 # var b = "text"
 
 const CardBase = preload("res://Cards/CardBase.tscn")
+const GameBoard = preload("res://Board/GameBoard.tscn")
 const CardState = preload("res://Cards/CardState.gd")
 
 onready var CenterCardOval = get_viewport().size * Vector2(0.5, 1.25)
@@ -39,7 +40,6 @@ func _ready():
 	$OpponentDeck.rect_size = CARD_SIZE
 	$OpponentDeck.rect_scale = CARD_SIZE / $OpponentDeck.texture_normal.get_size()
 	
-	
 	$TweenDraw.connect("tween_completed", self, "_on_tween_draw_completed")
 	
 	$TweenPlay.connect("tween_started", self, "_on_tween_play_started")
@@ -47,6 +47,10 @@ func _ready():
 	
 	$TweenOpponentPlay.connect("tween_started", self, "_on_tween_opponent_play_started")
 	$TweenOpponentPlay.connect("tween_completed", self, "_on_tween_opponent_play_completed")
+	
+	
+	$GameBoard.init(3, 3)
+	$GameBoard.connect("card_slot_selected", self, "_on_card_slot_selected")
 	
 	if not game_channel:
 		game_channel = Global.socket.channel("game:%s" % Global.game_id)
@@ -74,6 +78,8 @@ func _on_Channel_event(event, payload, status):
 		handle_player_rejoined(payload)
 	elif event == "place_card":
 		handle_place_card(payload)
+	elif event == "card_flipped":
+		handle_card_flipped(payload)
 		
 func _on_Channel_join_result(status, result):
 	if status == PhoenixChannel.STATUS.ok:
@@ -99,9 +105,9 @@ func _on_card_selected(card):
 		selected_card.set_state(CardState.InHand)
 	
 	selected_card = card
-	game_channel.push("valid_placements", card)
+	game_channel.push("valid_placements", {"card_id": card.card_id})
 
-func card_slot_selected(slot):
+func _on_card_slot_selected(slot):
 	if(selected_card == null):
 		return
 	
@@ -109,7 +115,6 @@ func card_slot_selected(slot):
 	$TweenPlay.interpolate_property(selected_card, "rect_position", 
 		selected_card.rect_position, selected_slot.rect_global_position, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$TweenPlay.start()
-	
 	pass
 
 func _on_Deck_pressed():
@@ -117,7 +122,7 @@ func _on_Deck_pressed():
 
 func initialize_card(card):
 	var new_card = CardBase.instance()
-	new_card.init(card.id, card.name, card.power_top, card.power_right, card.power_bottom, card.power_left)
+	new_card.init(card.id, card.name, card.power_top, card.power_right, card.power_bottom, card.power_left, Global.user_id)
 	new_card.rect_position = $Deck.rect_position - CARD_SIZE / 2
 	new_card.State = CardState.Drawing
 	new_card.get_node("CardBack").visible = false
@@ -136,7 +141,7 @@ func initialize_opponent_card(payload):
 		
 	var card = payload.card
 	var opp_card = CardBase.instance()
-	opp_card.init(card.id, card.name, card.power_top, card.power_right, card.power_bottom, card.power_left)
+	opp_card.init(card.id, card.name, card.power_top, card.power_right, card.power_bottom, card.power_left, payload.player)
 	opp_card.rect_position = $OpponentDeck.rect_position - CARD_SIZE / 2
 	opp_card.set_state(CardState.OpponentDrawing)
 	opp_card.rect_rotation = 180
@@ -151,37 +156,25 @@ func initialize_opponent_card(payload):
 func handle_place_card(payload):
 	if payload.controlled_by == Global.user_id:
 		return
-		
+	
 	for card in $OpponentHand.get_children():
-		if card.CardId == payload.card_id:
+		if card.card_id == payload.card_id:
 			selected_card = card
 			break;
 	
-	var coordinate = "%d,%d" % [payload.x, payload.y]
-	match coordinate:
-		"1,1":
-			selected_slot = $GridContainer/CardSlot0
-		"1,2":
-			selected_slot = $GridContainer/CardSlot1
-		"1,3":
-			selected_slot = $GridContainer/CardSlot2
-		"2,1":
-			selected_slot = $GridContainer/CardSlot3
-		"2,2":
-			selected_slot = $GridContainer/CardSlot4
-		"2,3":
-			selected_slot = $GridContainer/CardSlot5
-		"3,1":
-			selected_slot = $GridContainer/CardSlot6
-		"3,2":
-			selected_slot = $GridContainer/CardSlot7
-		"3,3":
-			selected_slot = $GridContainer/CardSlot8
+	selected_slot = $GameBoard.get_slot({"x": payload.x, "y": payload.y})
 	
 	$TweenOpponentPlay.interpolate_property(selected_card, "rect_position", 
 		selected_card.rect_position, selected_slot.rect_global_position, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$TweenOpponentPlay.start()
 	
+func handle_card_flipped(payload):
+	print("handle card flipped")
+	var flip_slot = $GameBoard.get_slot(payload)
+	var card = flip_slot.get_card()
+	
+	card.flip(payload.controlled_by)
+
 func handle_player_rejoined(payload):
 
 	active_player = payload["active"]
@@ -238,9 +231,9 @@ func _on_tween_play_started(object, node_path):
 
 func _on_tween_play_completed(object, node_path):
 	$Hand.remove_child(selected_card)	
-	selected_slot.add_child(selected_card)
+	selected_slot.place_card(selected_card)
 	
-	game_channel.push("place_card", {"x": selected_slot.x, "y": selected_slot.y, "card_id": selected_card.id})
+	game_channel.push("place_card", {"x": selected_slot.x, "y": selected_slot.y, "card_id": selected_card.card_id})
 	
 	selected_card = null
 	selected_slot = null
@@ -250,40 +243,9 @@ func _on_tween_opponent_play_started(object, node_path):
 	selected_card.set_state(CardState.OpponentInPlay)	
 
 func _on_tween_opponent_play_completed(object, node_path):
-	pass
+	$OpponentHand.remove_child(selected_card)
+	selected_slot.place_card(selected_card)
 	
-func _on_TextureButton0_pressed():
-	card_slot_selected($GridContainer/CardSlot0)
-	pass # Replace with function body.
-
-func _on_TextureButton1_pressed():
-	card_slot_selected($GridContainer/CardSlot1)
-	pass # Replace with function body.
-
-func _on_TextureButton2_pressed():
-	card_slot_selected($GridContainer/CardSlot2)
-	pass # Replace with function body.
-
-func _on_TextureButton3_pressed():
-	card_slot_selected($GridContainer/CardSlot3)
-	pass # Replace with function body.
-
-func _on_TextureButton4_pressed():
-	card_slot_selected($GridContainer/CardSlot4)
-	pass # Replace with function body.
-
-func _on_TextureButton5_pressed():
-	card_slot_selected($GridContainer/CardSlot5)
-	pass # Replace with function body.
-
-func _on_TextureButton6_pressed():
-	card_slot_selected($GridContainer/CardSlot6)
-	pass # Replace with function body.
-
-func _on_TextureButton7_pressed():
-	card_slot_selected($GridContainer/CardSlot7)
-	pass # Replace with function body.
-
-func _on_TextureButton8_pressed():
-	card_slot_selected($GridContainer/CardSlot8)
-	pass # Replace with function body.
+	selected_card = null
+	selected_slot = null
+	pass

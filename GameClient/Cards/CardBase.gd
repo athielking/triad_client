@@ -6,6 +6,7 @@ const CardState = preload("res://Cards/CardState.gd")
 const Selected_Highlight = preload("res://assets/images/greenhighlight.png")
 const Card_Highlight = preload("res://assets/images/cardhighlight.png")
 const ZOOM_SCALE = 1.6
+const FLIP_TIME = 0.4
 
 onready var _top_label = $Card/ColorRect/PowerContainer/Top/PowerTop
 onready var _right_label = $Card/ColorRect/PowerContainer/Middle/PowerRight
@@ -16,10 +17,9 @@ onready var _name_label = $Card/ColorRect2/Name
 onready var _orig_scale = rect_scale;
 
 # Declare member variables here. Examples:
-var CardId = 109
-var CardLevel = 1
-var CardImage = "quistis"
-
+var card_id = 109
+var owner_id := ""
+var controller_id := ""
 var power_top := 0
 var power_right := 0
 var power_bottom := 0
@@ -37,7 +37,7 @@ func _ready():
 	_setStats()
 
 func _loadImage():
-	var path = str("res://assets/images/", CardId, ".png")
+	var path = str("res://assets/images/109.png")
 	$Card.texture = load(path)
 	$CardBack.texture = load("res://assets/images/CardBack.png")
 	# $CardBack.scale = rect_size / $CardBack.texture.get_size();	
@@ -49,13 +49,39 @@ func _setStats():
 	_left_label.text = str(power_left)
 	_name_label.text = card_name
 
-func init(id, card_nm, top, right, bottom, left):
+func init(id, card_nm, top, right, bottom, left, player_id):
+	card_id = id
 	power_top = top
 	power_right = right
 	power_bottom = bottom
 	power_left = left
 	card_name = card_nm
+	owner_id = player_id
+	controller_id = player_id
+	
+	if(controller_id == Global.user_id):
+		$Card/ColorRect.color = Color(1, 1, 1, 1)
+	else:
+		$Card/ColorRect.color = Color(1, 0, 0, 1)
 
+func flip(player_id):
+	controller_id = player_id
+	
+	$FlipStartTween.interpolate_property(self, "rect_scale", rect_scale, Vector2(.01, 1), FLIP_TIME/2, Tween.TRANS_LINEAR, Tween.EASE_OUT )
+	$FlipStartTween.connect("tween_completed", self, "_on_flip_start_completed")
+	$FlipStartTween.start()
+	
+func _on_flip_start_completed(object, path):
+	$FlipEndTween.interpolate_property(self, "rect_scale", rect_scale, Vector2(1, 1), FLIP_TIME/2, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$FlipEndTween.connect("tween_completed", self, "_on_flip_end_completed")
+	$FlipEndTween.start()
+	
+func _on_flip_end_completed(object, path):
+	if(controller_id == Global.user_id):
+		$Card/ColorRect.color = Color(1, 1, 1, 1)
+	else:
+		$Card/ColorRect.color = Color(1, 0, 0, 1)
+	
 func set_state(desired_state):
 	var prevState = State;
 	State = desired_state

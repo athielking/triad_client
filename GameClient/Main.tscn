@@ -5,3 +5,7 @@
 [node name="Main" type="Node"]
 
 [node name="Login" parent="." instance=ExtResource( 1 )]
+margin_left = -0.839844
+margin_top = -1.67987
+margin_right = -0.839844
+margin_bottom = -1.67993

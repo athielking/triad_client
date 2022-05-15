@@ -142,5 +142,9 @@ centered = false
 
 [node name="RotateTween" type="Tween" parent="."]
 
+[node name="FlipStartTween" type="Tween" parent="."]
+
+[node name="FlipEndTween" type="Tween" parent="."]
+
 [connection signal="mouse_entered" from="Focus" to="." method="_on_Focus_mouse_entered"]
 [connection signal="mouse_exited" from="Focus" to="." method="_on_Focus_mouse_exited"]
